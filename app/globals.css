@@ -1,4 +1,4 @@
-@import "../node_modules/tailwindcss/dist/lib.d.mts";
+@import "tailwindcss";
 
 @plugin "tailwindcss-animate";
 
@@ -303,10 +303,8 @@
 }
 
 @utility pattern {
-  @apply bg-black bg-[url('/pattern.png')] bg-top bg-no-repeat bg-cover;
+  @apply bg-[url('/pattern.png')] bg-top bg-no-repeat;
 }
-
-
 
 @utility blue-gradient-dark {
   @apply bg-gradient-to-b from-[#171532] to-[#08090D];
