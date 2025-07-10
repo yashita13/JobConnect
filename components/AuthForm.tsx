@@ -6,19 +6,20 @@ import { z } from "zod"
 
 import { Button } from "@/components/ui/button"
 import { Form } from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
+// import { Input } from "@/components/ui/input"
 import Image from "next/image"
 import Link from "next/link"
 import { toast } from "sonner"
-import FormFeild from "@/components/FormFeild"
-import {useRouter} from "next/navigation"; // Assuming you intentionally spelled it this way
+import FormField from "@/components/FormField"
+import {useRouter} from "next/navigation";
 
-const authFormSchema = (type: FormType) =>
-    z.object({
+const authFormSchema = (type: FormType) =>{
+    return z.object({
         name: type === "sign-up" ? z.string().min(3) : z.string().optional(),
         email: z.string().email(),
         password: z.string().min(3),
     })
+}
 
 const AuthForm = ({ type }: { type: FormType }) => {
     const router = useRouter()
@@ -33,22 +34,22 @@ const AuthForm = ({ type }: { type: FormType }) => {
         },
     })
 
-    const isSignIn = type === "sign-in"
-
     function onSubmit(values: z.infer<typeof formSchema>) {
         try {
             if (type === "sign-up") {
-                toast.success("Account Created successfully")
+                toast.success("Account Created successfully.")
                 router.push('/sign-in')
             } else {
-                toast.success("SignIn successfully")
+                toast.success("SignIn successful.")
                 router.push('/')
             }
         } catch (err) {
             console.log(err)
-            toast.error(`There was an error with your submission`)
+            toast.error(`There was an error:${err}`)
         }
     }
+
+    const isSignIn = type === "sign-in"
 
     return (
         <div className="card-border lg:min-w-[566px]">
@@ -57,12 +58,12 @@ const AuthForm = ({ type }: { type: FormType }) => {
                     <Image src="/logo.svg" alt="logo" width={38} height={32} />
                     <h2 className="text-primary-100">JobConnect</h2>
                 </div>
-                <h3>Practice Job Interview with AI</h3>
+                <h3>AI-Powered Interview Practice</h3>
 
                 <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="W-full space-y-6 mt-4 form">
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6 mt-4 form">
                         {!isSignIn && (
-                            <FormFeild
+                            <FormField
                                 control={form.control}
                                 name="name"
                                 label="Name"
@@ -70,14 +71,15 @@ const AuthForm = ({ type }: { type: FormType }) => {
                             />
                         )}
 
-                        <FormFeild
+                        <FormField
                             control={form.control}
                             name="email"
                             label="Email"
                             placeholder="your@email.com"
+                            type="email"
                         />
 
-                        <FormFeild
+                        <FormField
                             control={form.control}
                             name="password"
                             label="Password"
@@ -92,7 +94,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
                 </Form>
 
                 <p className="text-center">
-                    {isSignIn ? "Don't have an account?" : "Already have an account!!"}
+                    {isSignIn ? "Don't have an account?" : "Already have an account?"}
                     <Link
                         href={!isSignIn ? "/sign-in" : "/sign-up"}
                         className="font-bold text-user-primary ml-1"
