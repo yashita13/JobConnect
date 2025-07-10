@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from 'next/image';
 import {dummyInterviews} from "@/constants";
 import InterviewCard from "@/components/InterviewCard";
+import {Button} from "@/components/ui/button";
 
 
 const Page = () => {
@@ -14,23 +15,23 @@ const Page = () => {
                         Get Interview-Ready with AI-Powered Practice & FeedBack
                     </h2>
                     <p className="text-lg">
-                        Practice on Real Interview Question & Get Review
+                        Practice on Real Interview Questions & Get Review
                     </p>
-                    <button asChild className="btn-primary max-sm:w-full">
+                    <Button asChild className="btn-primary max-sm:w-full">
                         <Link href="/interview">Start an Interview</Link>
 
-                    </button>
+                    </Button>
                 </div>
 
                 <Image src="/robot.png" alt="robo-dude" className="max-sm:hidden" width={400} height={400}/>
-
             </section>
+
             <section className="flex flex-col gap-6 mt-8">
-                <h2>Your Interview</h2>
+                <h2>Your Interviews</h2>
 
                 <div className="interviews-section">
-                    {dummyInterviews.map((interveiw) => (
-                        <InterviewCard {...interveiw} key = {interveiw.id}/>
+                    {dummyInterviews.map((interview) => (
+                        <InterviewCard {...interview} key = {interview.id}/>
                     ))}
 
                 </div>
@@ -42,8 +43,8 @@ const Page = () => {
                     Take an Interview
                 </h2>
                 <div className="interviews-section">
-                    {dummyInterviews.map((interveiw) => (
-                        <InterviewCard {...interveiw} key = {interveiw.id}/>
+                    {dummyInterviews.map((interview) => (
+                        <InterviewCard {...interview} key = {interview.id}/>
                     ))}
 
                     {/*<p>You haven&apos;t taken any interviews yet</p>*/}

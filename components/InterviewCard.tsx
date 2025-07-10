@@ -6,15 +6,14 @@ import Link from "next/link";
 import {Button} from "@/components/ui/button";
 import DisplayTechIcons from "@/components/DisplayTechIcons";
 
-const InterviewCard = ({interviewId,userId,role,type,techstack,createdAt} : InterviewCardProps) => {
+const InterviewCard = ({interviewId, userId, role, type, techstack, createdAt } : InterviewCardProps) => {
     const feedback = null as Feedback | null
     const normalizedType = /mix/gi.test(type) ? 'Mixed' : type
-    const formattedDate = dayjs(feedback?.createdAt || createdAt || Date.now()).format('MMM DD, YYYY')
-
+    const formattedDate = dayjs(feedback?.createdAt || createdAt || Date.now()).format('MMM D, YYYY');
 
 
     return (
-        <div className="card-border w-[360px] max sm:w-full min-h-96">
+        <div className="card-border w-[360px] max-sm:w-full min-h-96">
             <div className="card-interview">
                 <div>
                     <div className="absolute top-0 right-0 w-fit px-4 py-2 rounded-bl-lg bg-light-600">
@@ -41,8 +40,7 @@ const InterviewCard = ({interviewId,userId,role,type,techstack,createdAt} : Inte
                         </div>
                     </div>
                     <p className="line-clamp-2 mt-5">
-                        {feedback?.finalAssessment || "You haven't taken any interviews yet. " +
-                            "Take it to Improve your skills and get feedback from experts" }
+                        {feedback?.finalAssessment || "You haven't taken the interviews yet. Take it to Improve your skills." }
                     </p>
                 </div>
 
