@@ -11,9 +11,9 @@
           "y": -375.3437681811232
         }
       },
-      "prompt": "",
+      "prompt": "You are an AI interview assistant.",
       "messagePlan": {
-        "firstMessage": " Hello, {{username}}! Lets's prepare your interview . I'll ask you a few questions and generate a perfect interview just for you.\nAre you Ready ? "
+        "firstMessage": "Hello, {{username}}! Lets's prepare your interview . I'll ask you a few questions and generate a perfect interview just for you.\nAre you ready? "
       }
     },
     {
@@ -88,32 +88,32 @@
           "properties": {
             "role": {
               "type": "string",
-              "value": "{{role}}",
+              "value": "{{ role }}",
               "description": ""
             },
             "type": {
               "type": "string",
-              "value": "{{type}}",
+              "value": "{{ type }}",
               "description": ""
             },
             "level": {
               "type": "string",
-              "value": "{{level}}",
+              "value": "{{ level }}",
               "description": ""
             },
             "amount": {
               "type": "string",
-              "value": "{{amount}}",
+              "value": "{{ amount }}",
               "description": ""
             },
             "userid": {
               "type": "string",
-              "value": "{{userid}}",
+              "value": "{{ userid }}",
               "description": ""
             },
             "techstack": {
               "type": "string",
-              "value": "{{techstack}}",
+              "value": "{{ techstack }}",
               "description": ""
             }
           }
@@ -129,6 +129,12 @@
           },
           "description": "API request tool"
         },
+        "messages": [
+          {
+            "type": "request-start",
+            "blocking": false
+          }
+        ],
         "variableExtractionPlan": {
           "schema": {
             "type": "object",
@@ -148,7 +154,7 @@
           "y": 572.014994357228
         }
       },
-      "prompt": "Say that the interview has been generated and thank the user for the call",
+      "prompt": "Say that the interview has been generated and thank the user for the call.",
       "messagePlan": {
         "firstMessage": ""
       }
