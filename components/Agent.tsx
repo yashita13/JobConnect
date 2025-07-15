@@ -81,6 +81,7 @@ const Agent = ({userName,userId,type}:AgentProps) => {
 
         setCallStatus(CallStatus.FINISHED)
         vapi.stop()
+
     }
 
     const latestMessage = messages[messages.length-1]?. content
