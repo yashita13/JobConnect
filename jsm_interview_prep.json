@@ -1,0 +1,205 @@
+{
+  "name": "jsm_interview_prep",
+  "nodes": [
+    {
+      "name": "Conversation",
+      "type": "conversation",
+      "isStart": true,
+      "metadata": {
+        "position": {
+          "x": -672.6982236721394,
+          "y": -375.3437681811232
+        }
+      },
+      "prompt": "",
+      "messagePlan": {
+        "firstMessage": " Hello, {{username}}! Lets's prepare your interview . I'll ask you a few questions and generate a perfect interview just for you.\nAre you Ready ? "
+      }
+    },
+    {
+      "name": "conversation_1752430810844",
+      "type": "conversation",
+      "metadata": {
+        "position": {
+          "x": -672.2177491425966,
+          "y": 4.591848175788641
+        }
+      },
+      "prompt": "",
+      "variableExtractionPlan": {
+        "output": [
+          {
+            "enum": [],
+            "type": "string",
+            "title": "role",
+            "description": "What role would you like to train for ?"
+          },
+          {
+            "enum": [],
+            "type": "string",
+            "title": "type",
+            "description": "Are you aiming for a Technical , Behavioral or Mixed Interview ?"
+          },
+          {
+            "enum": [],
+            "type": "string",
+            "title": "level",
+            "description": "The Job experience level"
+          },
+          {
+            "enum": [],
+            "type": "string",
+            "title": "techstack",
+            "description": "A list of technologies to cover during the job interview."
+          },
+          {
+            "enum": [],
+            "type": "string",
+            "title": "amount",
+            "description": "How many questions would you like me to prepare for you ?"
+          }
+        ]
+      },
+      "messagePlan": {
+        "firstMessage": ""
+      }
+    },
+    {
+      "name": "apiRequest_1752433480678",
+      "type": "tool",
+      "metadata": {
+        "position": {
+          "x": -675.5336415777494,
+          "y": 322.014994357228
+        }
+      },
+      "tool": {
+        "url": "https://job-connect-lilac.vercel.app/api/vapi/generate",
+        "body": {
+          "type": "object",
+          "required": [
+            "type",
+            "role",
+            "level",
+            "techstack",
+            "amount",
+            "userid"
+          ],
+          "properties": {
+            "role": {
+              "type": "string",
+              "value": "{{role}}",
+              "description": ""
+            },
+            "type": {
+              "type": "string",
+              "value": "{{type}}",
+              "description": ""
+            },
+            "level": {
+              "type": "string",
+              "value": "{{level}}",
+              "description": ""
+            },
+            "amount": {
+              "type": "string",
+              "value": "{{amount}}",
+              "description": ""
+            },
+            "userid": {
+              "type": "string",
+              "value": "{{userid}}",
+              "description": ""
+            },
+            "techstack": {
+              "type": "string",
+              "value": "{{techstack}}",
+              "description": ""
+            }
+          }
+        },
+        "type": "apiRequest",
+        "method": "POST",
+        "function": {
+          "name": "api_request_tool",
+          "parameters": {
+            "type": "object",
+            "required": [],
+            "properties": {}
+          },
+          "description": "API request tool"
+        },
+        "variableExtractionPlan": {
+          "schema": {
+            "type": "object",
+            "required": [],
+            "properties": {}
+          },
+          "aliases": []
+        }
+      }
+    },
+    {
+      "name": "conversation_1752433915705",
+      "type": "conversation",
+      "metadata": {
+        "position": {
+          "x": -675.5336415777494,
+          "y": 572.014994357228
+        }
+      },
+      "prompt": "Say that the interview has been generated and thank the user for the call",
+      "messagePlan": {
+        "firstMessage": ""
+      }
+    },
+    {
+      "name": "hangup_1752433981530",
+      "type": "tool",
+      "metadata": {
+        "position": {
+          "x": -583.5336415777494,
+          "y": 822.014994357228
+        }
+      },
+      "tool": {
+        "type": "endCall"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Conversation",
+      "to": "conversation_1752430810844",
+      "condition": {
+        "type": "ai",
+        "prompt": "user said yes"
+      }
+    },
+    {
+      "from": "conversation_1752430810844",
+      "to": "apiRequest_1752433480678",
+      "condition": {
+        "type": "ai",
+        "prompt": "if the user said yes"
+      }
+    },
+    {
+      "from": "apiRequest_1752433480678",
+      "to": "conversation_1752433915705",
+      "condition": {
+        "type": "ai",
+        "prompt": "if the user said yes"
+      }
+    },
+    {
+      "from": "conversation_1752433915705",
+      "to": "hangup_1752433981530",
+      "condition": {
+        "type": "ai",
+        "prompt": "if the user said yes"
+      }
+    }
+  ],
+  "globalPrompt": ""
+}
