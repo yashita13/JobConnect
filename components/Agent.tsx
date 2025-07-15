@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, {useEffect, useState} from 'react'
 import Image from "next/image";
 import {cn} from "@/lib/utils";
@@ -13,13 +13,11 @@ enum CallStatus{
 }
 
 interface SavedMessage{
-       role: 'user' | 'system ' | 'assistant',
-       content: string,
-
-
+       role: 'user' | 'system' | 'assistant';
+       content: string;
 }
 
-const Agent = ({userName,userId,type}:AgentProps) => {
+const Agent = ({userName, userId, type}:AgentProps) => {
     const router = useRouter()
     const [isSpeaking, setIsSpeaking] = useState(false);
     const [callStatus, setCallStatus] = useState<CallStatus>(CallStatus.INACTIVE);
@@ -32,16 +30,16 @@ const Agent = ({userName,userId,type}:AgentProps) => {
         const onCallEnd = () => setCallStatus(CallStatus.FINISHED);
         const onMessage = (message: Message) => {
             if(message.type === 'transcript' && message.transcriptType === 'final'){
-                const mewMessage = { role : message.role, content: message.transcript}
+                const newMessage = { role : message.role, content: message.transcript}
 
-                setMessages((prev) => [...prev , mewMessage])
+                setMessages((prev) => [...prev , newMessage])
 
             }
         }
 
         const onSpeechStart = () => setIsSpeaking(true);
         const onSpeechEnd = () => setIsSpeaking(false);
-        const onError = (error: Error) => console.log(error);
+        const onError = (error: Error) => console.log('Error:', error);
 
         vapi.on('call-start',onCallStart)
         vapi.on('call-end',onCallEnd)
@@ -78,10 +76,8 @@ const Agent = ({userName,userId,type}:AgentProps) => {
     }
 
     const handleDisconnect = async () => {
-
         setCallStatus(CallStatus.FINISHED)
         vapi.stop()
-
     }
 
     const latestMessage = messages[messages.length-1]?. content
