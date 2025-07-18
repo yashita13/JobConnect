@@ -1,10 +1,11 @@
 import React from 'react'
 import Link from "next/link";
 import Image from 'next/image';
-import {dummyInterviews} from "@/constants";
 import InterviewCard from "@/components/InterviewCard";
 import {Button} from "@/components/ui/button";
-import {getCurrentUser, getInterviewsByUserId, getLatestInterviews} from "@/lib/actions/auth.actions";
+import {getCurrentUser} from "@/lib/actions/auth.actions";
+import {getInterviewsByUserId, getLatestInterviews} from "@/lib/actions/general.action"
+import Agent from "@/components/Agent";
 
 
 const Page = async () => {
@@ -52,7 +53,7 @@ const Page = async () => {
                             userInterviews?.map((interview) => (
                                 <InterviewCard {...interview} key={interview.id}/>
                             ))) : (
-                                <p>You haven&apos;t taken any interviews yet</p>
+                            <p>You haven&apos;t taken any interviews yet</p>
                         )}
 
                 </div>
