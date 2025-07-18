@@ -2,30 +2,30 @@
   "name": "jsm_interview_prep",
   "nodes": [
     {
-      "name": "Conversation",
+      "name": "Introduction",
       "type": "conversation",
       "isStart": true,
       "metadata": {
         "position": {
-          "x": -672.6982236721394,
-          "y": -375.3437681811232
+          "x": -673.5638387658141,
+          "y": -847.2114778018714
         }
       },
-      "prompt": "You are an AI interview assistant.",
+      "prompt": "You are an AI-powered interview assistant designed to conduct realistic and adaptive mock interviews. Start the conversation by greeting the user with their name (e.g., “Hello, {{username}}!”), introducing yourself briefly, and setting a positive, supportive tone. Let the user know that you’ll ask a few questions to understand their interview goals so you can generate personalized interview questions for them.\n\nSo, ask the user if they’re ready to begin. Keep your tone friendly, professional, and motivating.",
       "messagePlan": {
-        "firstMessage": "Hello, {{username}}! Lets's prepare your interview . I'll ask you a few questions and generate a perfect interview just for you.\nAre you ready? "
+        "firstMessage": "Hello, {{username}}! I'm your JobConnect interview assistant, here to help you prepare for your next big opportunity. I'll ask you a few questions and generate a perfect interview just for you.\nAre you ready? "
       }
     },
     {
-      "name": "conversation_1752430810844",
+      "name": "User Info",
       "type": "conversation",
       "metadata": {
         "position": {
-          "x": -672.2177491425966,
-          "y": 4.591848175788641
+          "x": -670.7195596368837,
+          "y": -239.47775106737146
         }
       },
-      "prompt": "",
+      "prompt": "Ask the upcoming questions one by one, using the variable fields defined. Maintain a friendly, conversational, and professional tone.\n\nAcknowledge each response briefly, then smoothly transition to the next question.\n\nYour goal is to gather enough information to generate a personalized mock interview tailored to the user’s role, experience, and preferences.\n",
       "variableExtractionPlan": {
         "output": [
           {
@@ -69,12 +69,12 @@
       "type": "tool",
       "metadata": {
         "position": {
-          "x": -675.5336415777494,
-          "y": 322.014994357228
+          "x": -672.297049876328,
+          "y": 340.43293038486235
         }
       },
       "tool": {
-        "url": "https://job-connect-lilac.vercel.app/api/vapi/generate",
+        "url": "https://job-connect-roan.vercel.app/api/vapi/generate",
         "body": {
           "type": "object",
           "required": [
@@ -150,8 +150,8 @@
       "type": "conversation",
       "metadata": {
         "position": {
-          "x": -675.5336415777494,
-          "y": 572.014994357228
+          "x": -664.4732515264666,
+          "y": 642.7807155238862
         }
       },
       "prompt": "Say that the interview has been generated and thank the user for the call.",
@@ -164,8 +164,8 @@
       "type": "tool",
       "metadata": {
         "position": {
-          "x": -583.5336415777494,
-          "y": 822.014994357228
+          "x": -660.9376089889504,
+          "y": 1162.7774633241609
         }
       },
       "tool": {
@@ -175,19 +175,19 @@
   ],
   "edges": [
     {
-      "from": "Conversation",
-      "to": "conversation_1752430810844",
+      "from": "Introduction",
+      "to": "User Info",
       "condition": {
         "type": "ai",
         "prompt": "user said yes"
       }
     },
     {
-      "from": "conversation_1752430810844",
+      "from": "User Info",
       "to": "apiRequest_1752433480678",
       "condition": {
         "type": "ai",
-        "prompt": "if the user said yes"
+        "prompt": "if all information is gathered"
       }
     },
     {
@@ -195,7 +195,7 @@
       "to": "conversation_1752433915705",
       "condition": {
         "type": "ai",
-        "prompt": "if the user said yes"
+        "prompt": "if interview questions were successfully generated"
       }
     },
     {
@@ -203,7 +203,7 @@
       "to": "hangup_1752433981530",
       "condition": {
         "type": "ai",
-        "prompt": "if the user said yes"
+        "prompt": "if interview confirmation message was delivered"
       }
     }
   ],
