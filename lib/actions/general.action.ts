@@ -19,8 +19,8 @@ export async function getLatestInterviews(params: GetLatestInterviewsParams): Pr
     const interviews = await db
         .collection('interviews')
         .orderBy('createdAt', 'desc')
-        .where('finalized','==',userId)
-        .where('userId','==',userId)
+        .where('finalized','==',true)
+        .where('userId',"!=",userId)
         .limit(limit)
         .get()
 
