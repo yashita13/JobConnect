@@ -5,7 +5,7 @@ import InterviewCard from "@/components/InterviewCard";
 import {Button} from "@/components/ui/button";
 import {getCurrentUser} from "@/lib/actions/auth.actions";
 import {getInterviewsByUserId, getLatestInterviews} from "@/lib/actions/general.action"
-import Agent from "@/components/Agent";
+// import Agent from "@/components/Agent";
 
 
 const Page = async () => {
