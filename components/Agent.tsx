@@ -6,6 +6,8 @@ import {useRouter} from "next/navigation";
 import { vapi } from '@/lib/vapi.sdk'
 import {interviewer} from "@/constants";
 import {createFeedback} from "@/lib/actions/general.action";
+import { db } from "@/firebase/admin";
+
 
 enum CallStatus{
     INACTIVE='INACTIVE',
@@ -63,7 +65,7 @@ const Agent = ({userName, userId, type, interviewId,questions}:AgentProps) => {
 
     const handleGenerateFeedback = async (messages:
                                           SavedMessage[]) => {
-        console.log('Generate feedback here.');
+
 
         const { success, feedbackId: id} = await createFeedback({
             interviewId: interviewId!,
@@ -80,27 +82,31 @@ const Agent = ({userName, userId, type, interviewId,questions}:AgentProps) => {
     }
 
     useEffect(() => {
-        if(callStatus === CallStatus.FINISHED){
-            if(type === 'generate'){
-                router.push(`/`)
-            }else{
+        if(callStatus === CallStatus.FINISHED) {
+            if (type === "generate") {
+                router.push("/")
+            } else {
                 handleGenerateFeedback(messages)
             }
         }
-        if(callStatus === CallStatus.FINISHED) router.push('/')
     },[messages, callStatus, type, userId])
 
     const handleCall = async () => {
         setCallStatus(CallStatus.CONNECTING)
 
         if(type === 'generate'){
-            await vapi.start(process.env.NEXT_PUBLIC_VAPI_WORKFLOW_ID!, {
-                variableValues: {
-                    username: userName,
-                    userid: userId,
+            try {
+                await vapi.start(process.env.NEXT_PUBLIC_VAPI_WORKFLOW_ID!, {
+                    variableValues: {
+                        username: userName,
+                        userid: userId,
+                    }
+                });
 
-                }
-            })
+            } catch (err) {
+                console.error('Failed to start Vapi call:', err);
+            }
+
         }else {
             let formattedQuestions = ""
 

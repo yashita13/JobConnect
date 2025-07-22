@@ -4,6 +4,7 @@ import {db} from "@/firebase/admin";
 import {generateObject} from "ai";
 import {feedbackSchema} from "@/constants";
 import {google} from "@ai-sdk/google";
+import { DocumentReference } from "firebase-admin/firestore";
 
 export async function getInterviewsByUserId(userId: string): Promise<Interview[] | null> {
     const interviews = await db
@@ -47,7 +48,7 @@ export async function getInterviewsById(id: string): Promise<Interview | null> {
 }
 
 export async function createFeedback(params: CreateFeedbackParams){
-    const {interviewId, userId, transcript, feedbackId} = params;
+    const {interviewId, userId, transcript} = params;
 
     try{
         const formattedTranscript =transcript
@@ -78,21 +79,25 @@ export async function createFeedback(params: CreateFeedbackParams){
                 "You are a professional interviewer analyzing a mock interview. Your task is to evaluate the candidate based on structured categories",
         });
 
-        const feedback = {
-            interviewId: interviewId,
-            userId: userId,
+
+
+// Create and add the document to Firestore
+        const feedbackDoc: DocumentReference = await db.collection("feedback").add({
+            interviewId,
+            userId,
             totalScore: object.totalScore,
             categoryScores: object.categoryScores,
             strengths: object.strengths,
             areasForImprovement: object.areasForImprovement,
             finalAssessment: object.finalAssessment,
             createdAt: new Date().toISOString(),
-        };
+        });
 
         return {
             success: true,
-            feedbackId: feedback.id
-        }
+            feedbackId: feedbackDoc.id,
+        };
+
     }
     catch(e){
         console.error('Error creating feedback', e);
