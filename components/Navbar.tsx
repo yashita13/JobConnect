@@ -32,10 +32,10 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className="w-full px-4 sm:px-6 md:px-12 py-4 flex justify-between items-center text-white shadow-md relative z-50 bg-[#0f0f0f]">
+            <nav className="w-full px-4 sm:px-6 md:px-12 py-4 flex justify-between items-center text-white shadow-md relative z-50 ">
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-2 text-3xl font-extrabold text-purple-400">
-                    <Image src="/logo.svg" alt="Logo" width={38} height={32} />
+                    <Image src="/img.png" alt="Logo" width={40} height={35} />
                     <span className="text-xl sm:text-2xl md:text-3xl text-primary-100">JobConnect</span>
                 </Link>
 
