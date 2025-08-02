@@ -21,8 +21,9 @@ const Page = async () => {
     return (
         <>
             {/* Hero Section */}
-            <section className="card-cta rounded-2xl px-4 sm:px-6 md:px-10 py-10 mt-6 h-auto md:h-[350px] flex flex-col md:flex-row items-center justify-between gap-8 sm:gap-10 shadow-lg ">
-                {/* Text Content */}
+            <section className="card-cta bg-[#1a1a1a]/70 backdrop-blur-md  rounded-2xl p-6 md:p-10 h-auto md:h-[350px] flex flex-col md:flex-row items-center justify-between gap-10 shadow-lg">
+
+            {/* Text Content */}
                 <div className="flex flex-col gap-6 text-white w-full md:max-w-xl">
                     <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-snug">
                         Your AI-Powered Interview & <span className="text-purple-500">Feedback</span> Generator
@@ -49,9 +50,8 @@ const Page = async () => {
             </section>
 
             {/* Past Interviews Section */}
-            {/* Past Interviews Section */}
             <section className="flex flex-col gap-6 mt-10 rounded-2xl px-4 sm:px-6 py-6 backdrop-blur-lg">
-                <h1 className="text-white text-2xl sm:text-3xl md:text-4xl font-bold">Your Interviews</h1>
+                <h2 className="text-white text-lg sm:text-2xl md:text-3xl font-bold">Your Interviews</h2>
 
                 <div className="w-full overflow-x-auto no-scrollbar">
                     <div className="flex gap-6 sm:gap-8 px-1 pb-2">
@@ -73,7 +73,7 @@ const Page = async () => {
 
             {/* Upcoming Interviews Section */}
             <section className="flex flex-col gap-6 mt-10 rounded-2xl px-4 sm:px-6 py-6 backdrop-blur-lg">
-                <h1 className="text-white text-2xl sm:text-3xl md:text-4xl font-bold">Take an Interview</h1>
+                <h2 className="text-white text-lg sm:text-2xl md:text-3xl font-bold">Take an Interview</h2>
 
                 <div className="w-full overflow-x-auto no-scrollbar">
                     <div className="flex gap-6 sm:gap-8 px-1 pb-2">

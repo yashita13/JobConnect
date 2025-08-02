@@ -32,7 +32,7 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className="w-full px-4 sm:px-6 md:px-12 py-4 flex justify-between items-center text-white shadow-md relative z-50 ">
+            <nav className="w-full px-4 sm:px-6 md:px-12 py-4 flex justify-between items-center text-white shadow-md relative z-50 mb-6 ">
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-2 text-3xl font-extrabold text-purple-400">
                     <Image src="/img.png" alt="Logo" width={40} height={35} />
