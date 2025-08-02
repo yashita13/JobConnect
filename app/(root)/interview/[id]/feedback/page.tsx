@@ -23,7 +23,7 @@ const Page = async ({params}: RouteParams) => {
     // console.log(feedback);
 
     return (
-        <section className="section-feedback">
+        <section className="section-feedback m-10">
             <div className="flex flex-row justify-center">
                 <h1 className="text-4xl font-semibold">
                     Feedback on the Interview -{" "}

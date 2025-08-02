@@ -322,6 +322,101 @@
   animation: fadeIn 0.3s ease-in-out;
 }
 
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes wiggle {
+  0%, 100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+/* Define utility classes like Tailwind style */
+.animate-spin-slow {
+  animation: spin-slow 10s linear infinite;
+}
+
+.animate-spin-reverse {
+  animation: spin-reverse 5s linear infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-wiggle {
+  animation: wiggle 1s ease-in-out infinite;
+}
+
+
+@keyframes float-wiggle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  20% {
+    transform: translateY(-15px) rotate(-10deg);
+  }
+  50% {
+    transform: translateY(10px) rotate(10deg);
+  }
+  80% {
+    transform: translateY(-15px) rotate(-10deg);
+  }
+}
+.animate-float-wiggle {
+  animation: float-wiggle 4s ease-in-out infinite;
+}
+
+@keyframes float-spin {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-10px) rotate(90deg);
+  }
+  50% {
+    transform: translateY(0px) rotate(180deg);
+  }
+  75% {
+    transform: translateY(10px) rotate(270deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(360deg);
+  }
+}
+
+.animate-float-spin {
+  animation: float-spin 6s ease-in-out infinite;
+}
+
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -331,4 +426,13 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+/* Hide scrollbar completely */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
 }

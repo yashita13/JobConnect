@@ -135,7 +135,7 @@ const Agent = ({userName, userId, type, interviewId,questions}:AgentProps) => {
 
     return (
         <>
-            <div className="call-view">
+            <div className="call-view mt-6">
                 <div className="card-interviewer">
                     <div className="avatar">
                         <Image src="/ai-avatar.png" alt="vapi" width={65} height={54} className="object-cover" />
@@ -166,7 +166,7 @@ const Agent = ({userName, userId, type, interviewId,questions}:AgentProps) => {
 
             <div className="w-full flex justify-center">
                 {callStatus !== 'ACTIVE'? (
-                    <button className="relative btn-call" onClick={handleCall}>
+                    <button className="relative btn-call mt-10" onClick={handleCall}>
                         <span className={cn('absolute animate-ping rounded-full opacity-75', callStatus!=='CONNECTING' && 'hidden')}
                         />
 

@@ -16,6 +16,7 @@ import {createUserWithEmailAndPassword, signInWithEmailAndPassword} from "fireba
 import {auth} from "@/firebase/client";
 import {signIn, signUp} from "@/lib/actions/auth.actions";
 
+
 const authFormSchema = (type: FormType) =>{
     return z.object({
         name: type === "sign-up" ? z.string().min(3) : z.string().optional(),
@@ -43,6 +44,9 @@ const AuthForm = ({ type }: { type: FormType }) => {
                 const {name, email, password} = values;
 
                 const userCredentials = await createUserWithEmailAndPassword(auth, email, password);
+
+
+
 
                 const result=await signUp({
                     uid:userCredentials.user.uid,
