@@ -175,7 +175,7 @@ const Agent = ({userName, userId, type, interviewId,questions}:AgentProps) => {
                         </span>
                     </button>
                 ):(
-                    <button className="btn-disconnect" onClick={handleDisconnect}>
+                    <button className="btn-disconnect mt-10" onClick={handleDisconnect}>
                         End
                     </button>
                 )}

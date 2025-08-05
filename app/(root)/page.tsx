@@ -48,6 +48,49 @@ const Page = async () => {
                 </div>
             </section>
 
+            {/* Features Section */}
+            <section className="flex flex-wrap gap-4 sm:gap-6 mt-10 px-4 sm:px-6 py-6 bg-[#1a1a1a]/70 backdrop-blur-md rounded-2xl shadow-lg">
+                <h2 className="w-full text-white text-xl sm:text-2xl md:text-3xl font-bold mb-4">
+                    Explore JobConnect Features
+                </h2>
+
+                {/* Feature Buttons */}
+                {/* Feature Buttons */}
+                <div className="w-full overflow-x-auto no-scrollbar">
+                    <div className="flex gap-8 min-w-full sm:justify-start justify-between">
+                        <Button
+                            asChild
+                            className="btn-primary px-4 py-2 text-xs sm:text-sm md:text-base font-semibold flex-shrink-0 min-w-[160px]"
+                        >
+                            <Link href="/interview">AI Mock Interviews</Link>
+                        </Button>
+
+                        <Button
+                            asChild
+                            className="btn-primary px-4 py-2 text-xs sm:text-sm md:text-base font-semibold flex-shrink-0 min-w-[160px]"
+                        >
+                            <Link href="/resume-matcher">Resume-JD Matcher</Link>
+                        </Button>
+
+                        <Button
+                            asChild
+                            className="btn-primary px-4 py-2 text-xs sm:text-sm md:text-base font-semibold flex-shrink-0 min-w-[180px]"
+                        >
+                            <Link href="/analytics">Performance Analytics</Link>
+                        </Button>
+
+                        <Button
+                            asChild
+                            className="btn-primary px-4 py-2 text-xs sm:text-sm md:text-base font-semibold flex-shrink-0 min-w-[160px]"
+                        >
+                            <Link href="/resources">Learning Resources</Link>
+                        </Button>
+                    </div>
+                </div>
+
+            </section>
+
+
             {/* Your Interviews Section */}
             <section className="flex flex-col gap-5 mt-10 rounded-2xl px-4 sm:px-6 py-6 backdrop-blur-md">
                 <h2 className="text-white text-xl sm:text-2xl md:text-3xl font-bold">Your Interviews</h2>
