@@ -2,7 +2,8 @@ import { generateText } from "ai";
 import { google } from "@ai-sdk/google";
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/firebase/admin";
-import pdf from "pdf-parse";
+// import pdf from "pdf-parse";
+import pdf from "@/lib/pdf-parse-fix";
 import crypto from "crypto";
 
 if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
