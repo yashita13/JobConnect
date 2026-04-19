@@ -1,9 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/firebase/admin";
-import { generateText } from "ai";
-import { google } from "@ai-sdk/google";
+// import { generateText } from "ai";
+// import { google } from "@ai-sdk/google";
 import pdf from "@/lib/pdf-parse-fix";
+import OpenAI from "openai";
 import { getRandomInterviewCover } from "@/lib/utils";
+
+const openai = new OpenAI({
+    apiKey: process.env.OPENROUTER_API_KEY,
+    baseURL: "https://openrouter.ai/api/v1",
+});
 
 export async function POST(req: NextRequest) {
     try {
@@ -32,9 +38,12 @@ export async function POST(req: NextRequest) {
         const pdfData = await pdf(buffer);
         const resumeText = pdfData.text || "No text extracted from resume.";
 
-        const { text: questionsResponse } = await generateText({
-            model: google('gemini-2.0-flash-001'),
-            prompt: `You are an AI interview generator. Analyze the following resume and create appropriate interview questions.
+        const completion1 = await openai.chat.completions.create({
+            model: "openai/gpt-4o-mini",
+            messages: [
+                {
+                    role: "user",
+                    content: `You are an AI interview generator. Analyze the following resume and create appropriate interview questions.
 
 Resume:
 ${resumeText}
@@ -50,7 +59,12 @@ Return the questions formatted like this:
 ["Question 1", "Question 2", "Question 3", ...]
 
 Do not include any explanations or additional text, just the JSON array of questions.`,
+                },
+            ],
         });
+
+        const questionsResponse =
+            completion1.choices?.[0]?.message?.content || "";
 
         const cleanResponse = questionsResponse
             .replace(/```json/g, "")
@@ -84,9 +98,12 @@ Do not include any explanations or additional text, just the JSON array of quest
             questions = ["Tell me about your experience.", "What are your key skills?", "Describe a challenging project you worked on."];
         }
 
-        const { text: resumeAnalysis } = await generateText({
-            model: google('gemini-2.0-flash-001'),
-            prompt: `Analyze the following resume and extract:
+        const completion2 = await openai.chat.completions.create({
+            model: "openai/gpt-4o-mini",
+            messages: [
+                {
+                    role: "user",
+                    content: `Analyze the following resume and extract:
 1. The most recent or primary job role/title
 2. The top 5 technical skills or technologies mentioned
 
@@ -100,7 +117,13 @@ Return the result as a JSON object with the following format:
 }
 
 Only return the JSON object, no other text.`,
+                },
+            ],
         });
+
+        const resumeAnalysis =
+            completion2.choices?.[0]?.message?.content || "";
+
 
         let roleInfo;
         try {

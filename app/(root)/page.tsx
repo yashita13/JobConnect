@@ -152,8 +152,6 @@ const Page = async () => {
                 </div>
             </section>
 
-
-
         </>
 
     );
